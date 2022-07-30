@@ -2,7 +2,7 @@ package FunctionalProgramming.imperative;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 import static FunctionalProgramming.imperative.Main.Gender.FEMALE;
 import static FunctionalProgramming.imperative.Main.Gender.MALE;
@@ -26,14 +26,16 @@ public class Main {
                 females.add(person);
             }
         }
-        for (Person female: females) {
+        for (Person female : females) {
             System.out.println(female);
         }
 
         // Declarative approach
         System.out.println("// Declarative approach");
+        Predicate<Person> personPredicate = person -> FEMALE.equals(person.gender);
+
         people.stream()
-                .filter(person -> FEMALE.equals(person.gender))
+                .filter(personPredicate)
                 .forEach(System.out::println);
     }
 
